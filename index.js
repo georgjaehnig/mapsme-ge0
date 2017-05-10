@@ -37,8 +37,9 @@ exports.decode = function(latLonZoom) {
   lat = lat / ((1 << MAPSWITHME_MAX_COORD_BITS) - 1) * 180.0 - 90.0;
   lon = lon / (1 << MAPSWITHME_MAX_COORD_BITS) * 360.0 - 180.0;
 	
-	lat = lat.toFixed(4);
-	lon = lon.toFixed(4);
+	// The '/1' ensures we have a float, not a string.
+	lat = lat.toFixed(4)/1;
+	lon = lon.toFixed(4)/1;
 
   if (lat <= -90.0 || lat >= 90.0)
     return FAILED;
