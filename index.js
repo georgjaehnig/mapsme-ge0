@@ -7,19 +7,21 @@ exports.decode = function(latLonZoom) {
 
 	const base64ReverseArray = getBase64Reverse();
 
-	var firstChar = latLonZoom[0];
-	var firstCharCode =  firstChar.charCodeAt(0);
-  var zoom = base64ReverseArray[firstCharCode];
+  var zoom = base64ReverseArray[latLonZoom[0].charCodeAt(0)];
   if (zoom > 63)
     return FAILED;
   zoom = zoom / 4. + 4.;
+	return zoom;
 
   var latLonStr = latLonZoom.substr(1);
   var latLonBytes = latLonStr.length;
-	return latLonBytes;
 
   var lat = 0;
   var lon = 0;
+
+  for(i = 0, shift = MAPSWITHME_MAX_COORD_BITS - 3; i < latLonBytes; i++, shift -= 3) {
+    var a = base64ReverseArray[latLonStr[$i].charCodeAt(0)];
+  }
 }
 
 function getBase64Reverse() {
