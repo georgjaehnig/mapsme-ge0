@@ -29,6 +29,21 @@ exports.decode = function(latLonZoom) {
     lat |= lat1 << shift;
     lon |= lon1 << shift;
   }
+
+  var middleOfSquare = 1 << (3 * (MAPSWITHME_MAX_POINT_BYTES - latLonBytes) - 1);
+  lat += middleOfSquare;
+  lon += middleOfSquare;
+
+  //lat = Math.round(lat / ((1 << MAPSWITHME_MAX_COORD_BITS) - 1) * 180.0 - 90.0, 5);
+  //lon = Math.round(lon / (1 << MAPSWITHME_MAX_COORD_BITS) * 360.0 - 180.0, 5);
+
+  lat = lat / ((1 << MAPSWITHME_MAX_COORD_BITS) - 1) * 180.0 - 90.0;
+  lon = lon / (1 << MAPSWITHME_MAX_COORD_BITS) * 360.0 - 180.0;
+	
+	lat = lat.toFixed(4);
+	lon = lon.toFixed(4);
+
+	return [lat, lon];
 }
 
 function getBase64Reverse() {
@@ -104,13 +119,6 @@ function getBase64Reverse() {
 /*
 function DecodeGe0LatLonZoom($latLonZoom)
 {
-
-  $middleOfSquare = 1 << (3 * ($MAPSWITHME_MAX_POINT_BYTES - $latLonBytes) - 1);
-  $lat += $middleOfSquare;
-  $lon += $middleOfSquare;
-
-  $lat = round($lat / ((1 << $MAPSWITHME_MAX_COORD_BITS) - 1) * 180.0 - 90.0, 5);
-  $lon = round($lon / (1 << $MAPSWITHME_MAX_COORD_BITS) * 360.0 - 180.0, 5);
 
   if ($lat <= -90.0 || $lat >= 90.0)
     return $FAILED;
