@@ -15,7 +15,7 @@
     "ge0"
   ],
   "author": "Georg Jaehnig <georg@jaehnig.org>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/georgjaehnig/mapsme-ge0/issues"
   },
