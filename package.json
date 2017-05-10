@@ -1,0 +1,23 @@
+{
+  "name": "mapsme-ge0",
+  "version": "0.0.1",
+  "description": "Decode MAPS.ME ge0 codes Edit",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/georgjaehnig/mapsme-ge0.git"
+  },
+  "keywords": [
+    "mapsme",
+    "ge0"
+  ],
+  "author": "Georg Jaehnig <georg@jaehnig.org>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/georgjaehnig/mapsme-ge0/issues"
+  },
+  "homepage": "https://github.com/georgjaehnig/mapsme-ge0#readme"
+}
