@@ -5,7 +5,7 @@ exports.decode = function(latLonZoom) {
 
   const FAILED = Array();
 
-	const base64ReverseArray = getBase64Reverse();
+  const base64ReverseArray = getBase64Reverse();
 
   var zoom = base64ReverseArray[latLonZoom[0].charCodeAt(0)];
   if (zoom > 63)
@@ -36,24 +36,24 @@ exports.decode = function(latLonZoom) {
 
   lat = lat / ((1 << MAPSWITHME_MAX_COORD_BITS) - 1) * 180.0 - 90.0;
   lon = lon / (1 << MAPSWITHME_MAX_COORD_BITS) * 360.0 - 180.0;
-	
-	lat = Math.round(lat * 1e5) / 1e5;
-	lon = Math.round(lon * 1e5) / 1e5;
+  
+  lat = Math.round(lat * 1e5) / 1e5;
+  lon = Math.round(lon * 1e5) / 1e5;
 
   if (lat <= -90.0 || lat >= 90.0)
     return FAILED;
   if (lon <= -180.0 || lon >= 180.0)
     return FAILED;
 
-	return {
-		lat: lat,
-		lon: lon,
-		zoom: zoom,
-	};
+  return {
+    lat: lat,
+    lon: lon,
+    zoom: zoom,
+  };
 }
 
 function getBase64Reverse() {
-	const base64Reverse = {
+  const base64Reverse = {
     65: 0,
     66: 1,
     67: 2,
@@ -118,6 +118,6 @@ function getBase64Reverse() {
     57: 61,
     45: 62,
     95: 63,
-	};
-	return base64Reverse;
+  };
+  return base64Reverse;
 }
