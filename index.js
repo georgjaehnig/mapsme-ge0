@@ -11,7 +11,6 @@ exports.decode = function(latLonZoom) {
   if (zoom > 63)
     return FAILED;
   zoom = zoom / 4. + 4.;
-	return zoom;
 
   var latLonStr = latLonZoom.substr(1);
   var latLonBytes = latLonStr.length;
@@ -20,7 +19,15 @@ exports.decode = function(latLonZoom) {
   var lon = 0;
 
   for(i = 0, shift = MAPSWITHME_MAX_COORD_BITS - 3; i < latLonBytes; i++, shift -= 3) {
-    var a = base64ReverseArray[latLonStr[$i].charCodeAt(0)];
+    var a = base64ReverseArray[latLonStr[i].charCodeAt(0)];
+    lat1 =  (((a >> 5) & 1) << 2 |
+                 ((a >> 3) & 1) << 1 |
+                 ((a >> 1) & 1));
+    lon1 =  (((a >> 4) & 1) << 2 |
+                 ((a >> 2) & 1) << 1 |
+                        (a & 1));
+    lat |= lat1 << shift;
+    lon |= lon1 << shift;
   }
 }
 
@@ -97,19 +104,6 @@ function getBase64Reverse() {
 /*
 function DecodeGe0LatLonZoom($latLonZoom)
 {
-
-  for($i = 0, $shift = $MAPSWITHME_MAX_COORD_BITS - 3; $i < $latLonBytes; $i++, $shift -= 3)
-  {
-    $a = $base64ReverseArray[ord($latLonStr[$i])];
-    $lat1 =  ((($a >> 5) & 1) << 2 |
-                 (($a >> 3) & 1) << 1 |
-                 (($a >> 1) & 1));
-    $lon1 =  ((($a >> 4) & 1) << 2 |
-                 (($a >> 2) & 1) << 1 |
-                        ($a & 1));
-    $lat |= $lat1 << $shift;
-    $lon |= $lon1 << $shift;
-  }
 
   $middleOfSquare = 1 << (3 * ($MAPSWITHME_MAX_POINT_BYTES - $latLonBytes) - 1);
   $lat += $middleOfSquare;
