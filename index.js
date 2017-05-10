@@ -1,13 +1,20 @@
-exports.decode = function(ge0) {
-
-	ge0 = getBase64Reverse();
+exports.decode = function(latLonZoom) {
 
   const MAPSWITHME_MAX_POINT_BYTES = 10;
   const MAPSWITHME_MAX_COORD_BITS = MAPSWITHME_MAX_POINT_BYTES * 3;
 
   const FAILED = Array();
 
-	return ge0;
+	const base64ReverseArray = getBase64Reverse();
+
+	var firstChar = latLonZoom[0];
+	var firstCharCode =  firstChar.charCodeAt(0);
+  var zoom = base64ReverseArray[firstCharCode];
+  if (zoom > 63)
+    return FAILED;
+  zoom = zoom / 4. + 4.;
+
+	return zoom;
 }
 
 function getBase64Reverse() {
@@ -81,26 +88,8 @@ function getBase64Reverse() {
 }
 
 /*
-// Internal helper function
-function GetBase64ReverseArray()
-{
-  static $base64Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
-  $base64ReverseArray = array();
-  // fill array with 255's
-  array_pad($base64ReverseArray, 256, 255);
-
-  for ($i = 0; $i < 64; $i++)
-  {
-    $c = $base64Alphabet[$i];
-    $base64ReverseArray[ord($c)] = $i;
-  }
-  return $base64ReverseArray;
-}
-
 function DecodeGe0LatLonZoom($latLonZoom)
 {
-
-  $base64ReverseArray = GetBase64ReverseArray();
 
   $zoom = $base64ReverseArray[ord($latLonZoom[0])];
   if ($zoom > 63)
