@@ -14,7 +14,9 @@ exports.decode = function(latLonZoom) {
     return FAILED;
   zoom = zoom / 4. + 4.;
 
-	return zoom;
+  var latLonStr = latLonZoom.substr(1);
+
+	return latLonStr;
 }
 
 function getBase64Reverse() {
@@ -91,12 +93,6 @@ function getBase64Reverse() {
 function DecodeGe0LatLonZoom($latLonZoom)
 {
 
-  $zoom = $base64ReverseArray[ord($latLonZoom[0])];
-  if ($zoom > 63)
-    return $FAILED;
-  $zoom = $zoom / 4. + 4.;
-
-  $latLonStr = substr($latLonZoom, 1);
   $latLonBytes = strlen($latLonStr);
   $lat = 0;
   $lon = 0;
