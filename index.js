@@ -45,7 +45,11 @@ exports.decode = function(latLonZoom) {
   if (lon <= -180.0 || lon >= 180.0)
     return FAILED;
 
-	return [lat, lon, zoom];
+	return {
+		lat: lat,
+		lon: lon,
+		zoom: zoom,
+	};
 }
 
 function getBase64Reverse() {
