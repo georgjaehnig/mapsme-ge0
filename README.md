@@ -2,6 +2,12 @@
 
 Convert ge0 codes from [MAPS.ME](http://maps.me/) to decimal coordinates. Port from PHP to Javascript from https://github.com/mapsme/ge0_url_decoder.
 
+## Installation
+
+via NPM: https://www.npmjs.com/package/mapsme-ge0
+
+    npm install mapsme-ge0
+
 ## Usage
 
 
