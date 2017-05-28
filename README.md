@@ -15,4 +15,4 @@ via NPM: https://www.npmjs.com/package/mapsme-ge0
     var coordinates = mapsmeGe0.decode('B4srhdHVVt');
     console.log(coordinates);
 
-    // Output: [ '64.5234', '12.1234', 4.25 ]
+    // Output: { lat: 64.5234, lon: 12.1234, zoom: 4.25 }
